@@ -17,13 +17,6 @@ async def get_contact(contact_id: int, db: Session):
     return contact
 
 
-async def create_contact(body: ContactModel, db: Session):
-    contact = Contacts(**body.model_dump())
-    db.add(contact)
-    db.commit()
-    db.refresh(contact)
-    return contact
-
 
 async def create_contact(body: ContactModel, db: Session):
     existing_contact = db.query(Contacts).filter(
